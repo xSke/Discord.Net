@@ -37,7 +37,7 @@ namespace Discord.Net.Queue
             _resetTick = null;
             LastAttemptAt = DateTimeOffset.UtcNow;
         }
-        
+
         static int nextId = 0;
         public async Task<Stream> SendAsync(RestRequest request)
         {
@@ -193,6 +193,7 @@ namespace Discord.Net.Queue
 #endif
                         if (millis > 0)
                             await Task.Delay(millis, request.Options.CancelToken).ConfigureAwait(false);
+                        else return;
                     }
                     else
                     {
